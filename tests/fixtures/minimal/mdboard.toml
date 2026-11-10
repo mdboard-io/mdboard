@@ -1,0 +1,46 @@
+mdboard = "0.1989.00"
+schema = 3
+
+[board]
+root = ".mdboard"
+cards = "cards"
+events = "events"
+meetings = "meetings"
+reviews = "reviews"
+reports = "reports"
+votes = "votes"
+orders = "orders"
+attachments = "attachments"
+upstream = "upstream.md"
+roadmap_override = "roadmap-override.md"
+
+[stakeholders]
+max_seats = 5
+quorum_seats = 3
+seat_term_days = 365
+seat_warning_days = 90
+
+[guardian]
+name = "Owner"
+email = "owner@example.com"
+organisation = ""
+
+[git]
+remote = "origin"
+stable = "stable"
+nightly = "nightly"
+upstream = "main"
+
+[limits]
+roadmap = 5
+
+[approval]
+mode = "chat"
+
+[meetings]
+consortium = "weekly"
+release = "biweekly"
+
+[costs]
+subscription = "unspecified payment model"
+eur_per_million_tokens = 4.96

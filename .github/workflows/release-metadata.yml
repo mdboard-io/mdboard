@@ -1,0 +1,42 @@
+name: release-metadata
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-metadata
+  cancel-in-progress: false
+
+jobs:
+  update-release:
+    name: update RELEASE from sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release
+          fetch-depth: 0
+      - name: Generate RELEASE and TAG
+        run: |
+          bash sbin/tag.sh
+          bash sbin/makerelease.sh
+      - name: Commit if RELEASE or TAG changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- RELEASE TAG; then
+            echo "RELEASE is already current"
+            exit 0
+          fi
+          git config user.name "mdboard release bot"
+          git config user.email "release-bot@mdboard.io"
+          git add RELEASE TAG
+          git commit -m "Update RELEASE to $(cat VERSION) [skip ci]"
+          git push origin HEAD:release

@@ -1,0 +1,48 @@
+[workspace]
+members = [
+    "crates/mdboard-core",
+    "crates/mdboard-driver",
+    "crates/mdboard-renderer",
+    "crates/mdboard-actions",
+    "crates/mdboard-serve",
+    "crates/mdboard-git",
+    "crates/mdboard-cli",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1990.4"
+edition = "2024"
+rust-version = "1.88.0"
+license = "AGPL-3.0-only"
+authors = ["Marcus Pinnecke"]
+repository = "https://github.com/mdboard-io/mdboard"
+homepage = "https://mdboard.io"
+description = "A Markdown-native, Git-backed board engine for multi-agent development processes"
+
+[workspace.dependencies]
+anyhow = "1.0.99"
+clap = { version = "4.5.41", features = ["derive"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.141"
+serde_yaml = "0.9.34"
+sha2 = "0.10.9"
+ureq = { version = "2.12.1", default-features = false, features = ["tls"] }
+thiserror = "1.0.69"
+toml = "0.8.23"
+toml_edit = "0.22.27"
+tempfile = "3.20.0"
+uuid = { version = "=1.18.0", features = ["v4"] }
+axum = { version = "0.8.4", features = ["ws"] }
+chrono = { version = "0.4.41", default-features = false, features = ["clock"] }
+notify = "8.2.0"
+notify-debouncer-mini = "0.7.0"
+tokio = { version = "1.47.1", features = ["macros", "rt-multi-thread", "net", "signal"] }
+tower-http = { version = "0.6.6", features = ["fs", "trace"] }
+open = "5.3.2"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"

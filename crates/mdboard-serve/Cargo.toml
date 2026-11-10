@@ -1,0 +1,33 @@
+[package]
+name = "mdboard-serve"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Static server and watcher for the mdboard HTML board"
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+chrono.workspace = true
+mdboard-actions = { path = "../mdboard-actions" }
+mdboard-core = { path = "../mdboard-core" }
+mdboard-driver = { path = "../mdboard-driver" }
+mdboard-renderer = { path = "../mdboard-renderer" }
+notify.workspace = true
+notify-debouncer-mini.workspace = true
+open.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tower-http.workspace = true
+uuid.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

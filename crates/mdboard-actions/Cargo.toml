@@ -1,0 +1,24 @@
+[package]
+name = "mdboard-actions"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Shared card actions and role checks for mdboard surfaces"
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+mdboard-core = { path = "../mdboard-core" }
+mdboard-driver = { path = "../mdboard-driver" }
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+toml.workspace = true
+
+[lints]
+workspace = true

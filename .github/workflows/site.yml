@@ -1,0 +1,26 @@
+name: site
+on:
+  push:
+    branches: [upstream, nightly, stable]
+    paths: ["web/mdboard-site/**"]
+  pull_request:
+    paths: ["web/mdboard-site/**"]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/mdboard-site/package-lock.json
+      - run: npm ci
+        working-directory: web/mdboard-site
+      - run: npm run build
+        working-directory: web/mdboard-site
+        env:
+          PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_placeholder
+          CLERK_SECRET_KEY: sk_test_placeholder
