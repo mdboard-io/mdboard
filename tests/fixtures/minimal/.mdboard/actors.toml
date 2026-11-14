@@ -1,0 +1,14 @@
+[actors.owner]
+kind = "human"
+display_name = "Owner"
+roles = ["owner"]
+
+[actors.member]
+kind = "human"
+display_name = "Product member"
+roles = ["member"]
+
+[actors.agent]
+kind = "agent"
+display_name = "Coding agent"
+roles = ["agent"]

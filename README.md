@@ -135,20 +135,6 @@ rm -rf "$tmp"
 git diff --check
 ```
 
-## Documentation
-
-The VitePress source is part of this repository at `web/mdboard-io`.
-
-```sh
-cd web/mdboard-io
-npm ci
-npm run docs:build
-```
-
-- [Guide](https://mdboard.io/guide/)
-- [Quickstart](https://mdboard.io/guide/getting-started)
-- [Process model](docs/spec/process-model.md)
-
 ## License
 
 GNU Affero General Public License v3.0 only. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

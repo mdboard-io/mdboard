@@ -9,8 +9,6 @@ use anyhow::{Context, Result, bail};
 use mdboard_driver::process::ProcessLoaded;
 use serde::Deserialize;
 
-const HARD_EXCLUDES: &[&str] = &[".git", ".mdboard", ".mdboardignore"];
-
 #[derive(Debug, Clone, Deserialize, Default)]
 #[serde(deny_unknown_fields)]
 struct MirrorFile {
@@ -188,7 +186,10 @@ fn collect(
         };
         let child = relative.join(name);
         let rel = child.to_string_lossy().replace('\\', "/");
-        if HARD_EXCLUDES.contains(&name) || is_excluded(&rel, patterns) {
+        let hard_excluded = name == ".git"
+            || ((name == ".mdboard" || name == ".mdboardignore")
+                && relative.as_os_str().is_empty());
+        if hard_excluded || is_excluded(&rel, patterns) {
             excluded.push(child);
             continue;
         }
