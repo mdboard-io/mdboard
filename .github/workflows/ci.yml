@@ -31,7 +31,9 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: "."
-      - run: ./sbin/check-licensing.sh
+      - name: Licensing check (private only)
+        if: ${{ hashFiles('sbin/check-licensing.sh') != '' }}
+        run: ./sbin/check-licensing.sh
       - run: cargo fmt --all -- --check
       - run: cargo clippy --workspace --all-targets --locked -- -D warnings
 
