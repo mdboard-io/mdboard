@@ -1,0 +1,17 @@
+[package]
+name = "mdboard-renderer"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Markdown views for mdboard"
+
+[dependencies]
+mdboard-core = { path = "../mdboard-core" }
+
+
+[lints]
+workspace = true
