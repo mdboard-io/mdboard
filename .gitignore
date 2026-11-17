@@ -1,0 +1,31 @@
+# Rust build output
+/target/
+
+# mdboard generated HTML board (build artifact, not truth)
+/site/
+/.mdboard/site/
+
+# VitePress (private website repository)
+node_modules/
+.vitepress/cache/
+.vitepress/dist/
+
+# Operating system and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Local Cargo home used by sandboxed builds
+/.cargo-home/
+
+# Integrated VitePress docs
+web/mdboard-io/node_modules/
+web/mdboard-io/docs/.vitepress/cache/
+web/mdboard-io/docs/.vitepress/dist/
+
+# Paddle local secrets
+.env.paddle.local
+
+# Website tooling caches
+web/.cache/
+web/.npm-cache/

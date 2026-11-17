@@ -1,0 +1,32 @@
+# escape=`
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+ARG VERSION=dev
+ARG BUILD=unknown
+ARG BUILD_DATE=unknown
+ARG MDBOARD_CHANNEL=dev
+ARG MDBOARD_COMMIT=unknown
+
+LABEL org.opencontainers.image.title="mdboard"
+LABEL org.opencontainers.image.description="Markdown-native, Git-backed board engine"
+LABEL org.opencontainers.image.source="https://github.com/mdboard-io/mdboard"
+LABEL org.opencontainers.image.licenses="AGPL-3.0-only"
+LABEL org.opencontainers.image.version="${VERSION}"
+LABEL org.opencontainers.image.revision="${MDBOARD_COMMIT}"
+LABEL org.opencontainers.image.created="${BUILD_DATE}"
+LABEL io.mdboard.build="${BUILD}"
+LABEL io.mdboard.channel="${MDBOARD_CHANNEL}"
+
+RUN powershell -NoProfile -Command `
+    $ErrorActionPreference = 'Stop'; `
+    Invoke-WebRequest -Uri 'https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.1/MinGit-2.47.1-64-bit.zip' -OutFile C:\mingit.zip; `
+    Expand-Archive C:\mingit.zip -DestinationPath C:\mingit; `
+    Remove-Item C:\mingit.zip
+ENV PATH="C:\mingit\cmd;C:\mingit\usr\bin;${PATH}"
+
+COPY mdboard.exe C:\mdboard\mdboard.exe
+COPY LICENSE C:\mdboard\LICENSE
+COPY NOTICE C:\mdboard\NOTICE
+WORKDIR C:\workspace
+ENTRYPOINT ["C:\\mdboard\\mdboard.exe"]
+CMD ["--help"]

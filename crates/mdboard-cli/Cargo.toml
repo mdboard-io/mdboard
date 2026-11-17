@@ -1,0 +1,38 @@
+[package]
+name = "mdboard-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "The mdboard command-line tool"
+
+[[bin]]
+name = "mdboard"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+clap.workspace = true
+mdboard-core = { path = "../mdboard-core" }
+mdboard-driver = { path = "../mdboard-driver" }
+mdboard-git = { path = "../mdboard-git" }
+mdboard-actions = { path = "../mdboard-actions" }
+mdboard-renderer = { path = "../mdboard-renderer" }
+mdboard-serve = { path = "../mdboard-serve" }
+serde.workspace = true
+tempfile.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+toml.workspace = true
+toml_edit.workspace = true
+ureq.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
